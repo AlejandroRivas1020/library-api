@@ -7,7 +7,6 @@ import { seedUsers } from './modules/seeders/users.seed';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Library API')
     .setDescription('API for managing books')
@@ -18,7 +17,6 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   await seedUsers();
-
   app.useGlobalPipes(new ValidationPipe());
   const port = 3000;
   await app.listen(port);
